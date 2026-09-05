@@ -1,0 +1,265 @@
+<!doctype html>
+  <html lang="es">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Caza de Regalos</title>
+<meta property="og:title" content="🎁 Regalos Neiba">
+<meta property="og:description" content="Sumá amigos al grupo y ganá premios">
+  <meta property="og:type" content="website">
+  <style>
+    :root{
+      --bg:#f3ead3; --card:#fffdf8; --ink:#2b1810; --muted:#7c6c4c;
+      --accent:#d5401f; --pill:#fbe0d8; --field:#f6ecd6; --field-border:#e3d5ae;
+      --wa:#25D366;
+}
+  *{box-sizing:border-box;}
+  body{
+        margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    padding:24px 16px 60px;
+}
+  .wrap{max-width:480px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+  .brand .logo{font-size:28px;}
+  .brand b{font-size:22px;letter-spacing:0.5px;}
+  .pill{display:inline-block;background:var(--pill);color:var(--accent);font-size:12px;font-weight:700;
+    letter-spacing:1px;padding:5px 12px;border-radius:20px;margin-bottom:14px;}
+  h1{font-size:34px;line-height:1.15;margin:0 0 14px;font-weight:800;}
+  p.lead{font-size:16px;line-height:1.5;color:#4a3a26;margin:0 0 20px;}
+  p.lead b{color:var(--ink);}
+  .prize{background:var(--card);border-radius:16px;padding:20px;display:flex;gap:16px;margin-bottom:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);}
+  .prize .icon{font-size:34px;flex-shrink:0;}
+  .prize h2{font-size:17px;margin:0 0 6px;}
+  .prize h2 .price{color:var(--accent);}
+  .prize p{font-size:13px;line-height:1.5;color:var(--muted);margin:0;}
+  .card{background:var(--card);border-radius:16px;padding:22px;margin-bottom:16px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);}
+  .field{margin-bottom:14px;}
+      .field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;}
+  .field input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--field-border);
+    background:var(--field);font-size:15px;color:var(--ink);}
+  .field input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  button, .btn{
+        display:inline-block;width:100%;text-align:center;border:none;border-radius:10px;
+    padding:14px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;
+  }
+  #generate-btn{background:var(--accent);color:#fff;}
+  #generate-btn:disabled{opacity:.6;}
+  .stat-label{font-size:13px;color:var(--muted);}
+  .name-pill{background:var(--pill);color:var(--accent);padding:2px 8px;border-radius:8px;font-weight:700;}
+  .link-box{display:flex;gap:8px;margin:12px 0;}
+  .link-box input{flex:1;padding:12px;border-radius:10px;border:1px solid var(--field-border);
+    background:var(--field);font-size:13px;color:var(--ink);}
+  .secondary{background:var(--pill);color:var(--accent);padding:10px 16px;font-size:13px;border-radius:10px;
+    border:none;font-weight:700;cursor:pointer;white-space:nowrap;}
+      .rule{height:1px;background:#eee0c2;margin:16px 0;}
+        .stat-row{display:flex;justify-content:center;}
+  .stat-num{font-size:32px;font-weight:800;color:var(--accent);}
+        .footline{font-size:12px;color:var(--muted);line-height:1.5;margin:14px 0 0;}
+  .wa-btn{background:var(--wa);color:#fff;margin-top:8px;}
+    .board{margin-top:6px;}
+  .board-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;
+    border-bottom:1px solid #f0e6cc;font-size:14px;}
+  .board-row:last-child{border-bottom:none;}
+  .board-row .pos{width:22px;color:var(--muted);font-weight:700;}
+  .board-row .cnt{font-weight:800;color:var(--accent);}
+    #toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#2b1810;color:#fff;
+    padding:10px 18px;border-radius:10px;font-size:13px;opacity:0;transition:all .25s;pointer-events:none;}
+  #toast.show{opacity:1;transform:translate(-50%,0);}
+  [hidden]{display:none!important;}
+</style>
+    </head>
+    <body>
+    <div class="wrap">
+
+  <div class="brand"><span class="logo">🎁</span><b>NEIBA</b></div>
+  <span class="pill">REGALOS NEIBA</span>
+            <h1>El que mas suma,<br>se lleva todo.</h1>
+  <p class="lead">Generá tu link personal del grupo <b>Regalos Neiba</b> y compartilo. Quien sume mas amigos nuevos al grupo se lleva el premio. Arranca ya, sin fecha de cierre por ahora.</p>
+
+      <div class="prize">
+        <div class="icon">🎁</div>
+        <div>
+          <h2>1° puesto: 2 relojes <span class="price">+ $120.000</span></h2>
+          <p>2° puesto: 2 relojes. 3° puesto: 1 reloj. Se lo lleva quien sume mas amigos nuevos al grupo. Vale gente que se une y se queda: si alguien sale antes de terminar la promo, se descuenta solo. Sin fecha de cierre por ahora.</p>
+        </div>
+      </div>
+
+      <div id="view-redirect" class="card" hidden style="text-align:center;">
+        <p style="margin:0 0 16px;">Ya casi. Toca el boton para unirte al grupo.</p>
+        <a id="redirect-link" class="btn wa-btn" target="_blank" rel="noopener">Unirme al grupo</a>
+      </div>
+
+      <form id="view-form" class="card" method="GET" action="https://script.google.com/macros/s/AKfycbxCBi0eZZ6IfrcHSCW6MhR36gaXopj29A0LVWGM7OKFymjfqk0ypTbuh5sZZGczyMD48A/exec">
+    <input type="hidden" name="api" value="create">
+        <div class="field">
+          <label for="name-input">Tu nombre</label>
+          <input id="name-input" name="name" type="text" placeholder="Como te conocen en el grupo" maxlength="40" required>
+        </div>
+        <div class="field">
+          <label for="phone-input">Tu numero de WhatsApp</label>
+          <input id="phone-input" name="phone" type="tel" placeholder="Ej: 3794123456" maxlength="20" required>
+        </div>
+        <button id="generate-btn" type="submit">Generar mi link</button>
+  </form>
+
+  <div id="view-link" class="card" hidden>
+    <div class="stat-label">Tu link, <span class="name-pill" id="my-name"></span></div>
+        <div class="link-box">
+          <input id="my-link" type="text" readonly onclick="this.select();">
+          <button id="copy-btn" class="secondary" type="button">Copiar</button>
+        </div>
+        <a id="wa-share" class="btn wa-btn" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+        <div class="rule"></div>
+        <div class="stat-row">
+          <div style="text-align:center;">
+            <div class="stat-num" id="my-clicks">0</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:2px;">amigos sumados</div>
+          </div>
+        </div>
+        <p class="footline">Contamos 1 persona cuando se une al grupo con tu link. Si alguien sale del grupo antes de que termine la promo, se descuenta de tu conteo. Mira la tabla de posiciones para ver tu lugar.</p>
+  </div>
+
+  <div class="card">
+    <div class="stat-label" style="margin-bottom:8px;font-weight:700;">Tabla de posiciones</div>
+    <div id="board" class="board"><p class="footline" style="margin:0;">Cargando...</p></div>
+      </div>
+
+    </div>
+    <div id="toast"></div>
+
+    <script>
+    (function(){
+      var API_BASE = "https://script.google.com/macros/s/AKfycbxCBi0eZZ6IfrcHSCW6MhR36gaXopj29A0LVWGM7OKFymjfqk0ypTbuh5sZZGczyMD48A/exec";
+  var GROUP_LINK = "https://chat.whatsapp.com/In2kJ7Zkkbk7ZDVRYL9WKB?s=cl&p=i&mlu=4&ilr=4";
+  var STORAGE_KEY = "caza_regalos_code";
+
+  function $(id){ return document.getElementById(id); }
+
+  function toast(msg){
+        var t = $("toast");
+    t.textContent = msg;
+    t.className = "show";
+    setTimeout(function(){ t.className = ""; }, 2200);
+  }
+
+  function myLinkFor(code){ return location.origin + location.pathname + "?ref=" + encodeURIComponent(code); }
+
+  var views = { form: $("view-form"), link: $("view-link"), redirect: $("view-redirect") };
+  function showMain(sub){
+        views.redirect.hidden = true;
+    views.form.hidden = (sub !== "form");
+    views.link.hidden = (sub !== "link");
+  }
+
+  var pollTimer = null;
+  function watchMyClicks(code){
+        function tick(){
+                fetch(API_BASE + "?api=clicks&code=" + encodeURIComponent(code))
+        .then(function(r){ return r.json(); })
+        .then(function(d){ $("my-clicks").textContent = d.count || 0; })
+        .catch(function(){});
+  }
+    tick();
+    if (pollTimer) clearInterval(pollTimer);
+    pollTimer = setInterval(tick, 8000);
+  }
+
+  function renderLinkView(code, name){
+        $("my-name").textContent = name || "vos";
+    var link = myLinkFor(code);
+    $("my-link").value = link;
+    $("wa-share").href = "https://wa.me/?text=" + encodeURIComponent("🎁 Regalos Neiba - Suma amigos al grupo, hay premios:\n" + link);
+    showMain("link");
+    watchMyClicks(code);
+  }
+
+  function createLink(){
+        var name = $("name-input").value.trim();
+    if (!name){ $("name-input").focus(); return; }
+    var phone = $("phone-input").value.trim();
+    if (!phone){ $("phone-input").focus(); return; }
+    var btn = $("generate-btn");
+    btn.disabled = true; btn.textContent = "Generando...";
+    fetch(API_BASE + "?api=create&xhr=1&name=" + encodeURIComponent(name) + "&phone=" + encodeURIComponent(phone))
+            .then(function(r){ return r.json(); })
+      .then(function(d){
+                if (d.error){ toast("Algo fallo al generar tu link."); btn.disabled = false; btn.textContent = "Generar mi link"; return; }
+        try{ localStorage.setItem(STORAGE_KEY, d.code); }catch(e){}
+        renderLinkView(d.code, d.name);
+      })
+      .catch(function(){ toast("Algo fallo al generar tu link. Proba de nuevo."); btn.disabled = false; btn.textContent = "Generar mi link"; });
+}
+
+  function copyLink(){
+        var text = $("my-link").value;
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ toast("Link copiado"); }, function(){ toast("Mantene presionado el campo para copiarlo"); });
+    } else {
+      toast("Mantene presionado el campo para copiarlo");
+    }
+  }
+
+  function renderBoard(rows){
+        var el = $("board");
+    if (!rows || !rows.length){ el.innerHTML = '<p class="footline" style="margin:0;">Todavia no hay nadie en la tabla.</p>'; return; }
+    var html = "";
+    rows.slice(0, 10).forEach(function(r, i){
+            html += '<div class="board-row"><span class="pos">' + (i+1) + '</span><span>' + escHtml(r.name) + '</span><span class="cnt">' + r.count + '</span></div>';
+    });
+    el.innerHTML = html;
+  }
+  function escHtml(t){ return (t||"").toString().split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;"); }
+
+  function loadBoard(){
+        fetch(API_BASE + "?api=board").then(function(r){ return r.json(); }).then(renderBoard).catch(function(){
+          $("board").innerHTML = '<p class="footline" style="margin:0;">No se pudo cargar la tabla.</p>';
+  });
+}
+
+  function init(){
+        var params = new URLSearchParams(location.search);
+    var ref = params.get("ref");
+
+    if (ref){
+      // Someone opened a referral link: log the click, then send them to the WhatsApp group.
+      views.form.hidden = true; views.link.hidden = true;
+      views.redirect.hidden = false;
+      $("redirect-link").href = GROUP_LINK;
+      fetch(API_BASE + "?api=logclick&code=" + encodeURIComponent(ref)).catch(function(){});
+      try{ top.location.replace(GROUP_LINK); }catch(e){}
+      loadBoard();
+      return;
+    }
+
+    views.form.addEventListener("submit", function(e){ e.preventDefault(); createLink(); });
+    $("copy-btn").addEventListener("click", copyLink);
+
+    var saved = null;
+    try{ saved = localStorage.getItem(STORAGE_KEY); }catch(e){}
+    if (saved){
+      fetch(API_BASE + "?api=clicks&code=" + encodeURIComponent(saved))
+                .then(function(r){ return r.json(); })
+        .then(function(d){
+                    if (d && typeof d.count === "number"){
+            renderLinkView(saved, null);
+                    } else {
+            showMain("form");
+                    }
+        })
+        .catch(function(){ showMain("form"); });
+    } else {
+      showMain("form");
+    }
+
+    loadBoard();
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();
+</script>
+  </body>
+  </html>
+  

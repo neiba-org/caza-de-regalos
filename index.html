@@ -119,13 +119,8 @@
             <div style="font-size:12px;color:var(--muted);margin-top:2px;">amigos sumados</div>
           </div>
         </div>
-        <p class="footline">Contamos 1 persona cuando se une al grupo con tu link. Si alguien sale del grupo antes de que termine la promo, se descuenta de tu conteo. Mira la tabla de posiciones para ver tu lugar.</p>
+        <p class="footline">Contamos 1 persona cuando se une al grupo con tu link. Si alguien sale del grupo antes de que termine la promo, se descuenta de tu conteo.</p>
   </div>
-
-  <div class="card">
-    <div class="stat-label" style="margin-bottom:8px;font-weight:700;">Tabla de posiciones</div>
-    <div id="board" class="board"><p class="footline" style="margin:0;">Cargando...</p></div>
-      </div>
 
     </div>
     <div id="toast"></div>
@@ -230,7 +225,6 @@
       $("redirect-link").href = GROUP_LINK;
       fetch(API_BASE + "?api=logclick&code=" + encodeURIComponent(ref)).catch(function(){});
       try{ top.location.replace(GROUP_LINK); }catch(e){}
-      loadBoard();
       return;
     }
 
@@ -253,8 +247,6 @@
     } else {
       showMain("form");
     }
-
-    loadBoard();
   }
 
   document.addEventListener("DOMContentLoaded", init);
